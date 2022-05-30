@@ -17,15 +17,15 @@ connection.once('open',()=> console.log('Connected to MongoDB'))
 app.use(express.json())
 app.use('/api/items',itemsRoute)
 
-const doc = new Item({
-    name: "Grapes",
-    image: "https://cf.ltkcdn.net/wine/images/std/165373-800x532r1-grapes.jpg",
-    price: 7,
-    quantity:10,
-    category: "fruits",
-})
+// const doc = new Item({
+//     name: "Grapes",
+//     image: "https://cf.ltkcdn.net/wine/images/std/165373-800x532r1-grapes.jpg",
+//     price: 7,
+//     quantity:10,
+//     category: "fruits",
+// })
 
- doc.save().then(console.log("Saved"))
+//  doc.save().then(console.log("Saved"))
 
 
 // router.delete('Items/:_id', (req,res)=>{
