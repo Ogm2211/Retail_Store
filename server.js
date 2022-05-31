@@ -7,13 +7,15 @@ const PORT = process.env.PORT
 const Item = require('./models/Item')
 const itemsRoute = require('./routes/itemsRoute')
 
-
+// Database Connection
 connect(process.env.MONGO_URI,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 connection.once('open',()=> console.log('Connected to MongoDB'))
 
+
+// MiddleWare 
 app.use(express.json())
 app.use('/api/items',itemsRoute)
 
@@ -40,6 +42,8 @@ app.use('/api/items',itemsRoute)
 //     }
 // })
 
+
+
 app.get('/', async (req,res) => {
     try{
         // const items = await Item.find()
@@ -50,4 +54,8 @@ app.get('/', async (req,res) => {
         res.status(400).json(error)
     }
 })
+
+// Server Listening Port 
+
+
 app.listen(PORT,() => console.log(`Node JS Server Runnig at port ${PORT}`))

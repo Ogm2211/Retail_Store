@@ -2,6 +2,9 @@ const express = require('express')
 const Item = require('../models/Item')
 const router = express.Router()
 
+
+// Return all items in database
+
 router.get('/get-all-items', async (req, res) => {
     try {
         const items = await Item.find()
@@ -11,6 +14,8 @@ router.get('/get-all-items', async (req, res) => {
         res.status(400).json(error)
     }
 })
+
+//Return spesific item with id
 
 router.get('/:id', async (req,res) =>{
 
@@ -23,6 +28,10 @@ router.get('/:id', async (req,res) =>{
       res.status(400).json(error)
   }
 })
+
+//Delete route 
+
+
 router.delete('/Delete/:id', (req, res) => {
     console.log('Inside of delete request', req.params.id)
     Item.findByIdAndDelete(req.params.id, (err) => {
@@ -33,10 +42,16 @@ router.delete('/Delete/:id', (req, res) => {
         }
     })
 })
+
+//Update item with id
+
+
 router.post('/update/:id',async (req,res)=>{
     await Item.findByIdAndUpdate(req.params.id, req.body)
     res.redirect('/')
 })
+
+//Create new item 
 
 router.post('/add-item', async (req, res) => {
     try {
