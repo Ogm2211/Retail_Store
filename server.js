@@ -3,7 +3,7 @@ const express = require('express')
 const {connect, connection} = require('mongoose')
 const method = require('method-override')
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 const Item = require('./models/Item')
 const itemsRoute = require('./routes/itemsRoute')
 
@@ -13,13 +13,7 @@ connect(process.env.MONGO_URI,{
     useUnifiedTopology: true
 })
 connection.once('open',()=> console.log('Connected to MongoDB'))
-const path = require('path')
-if(process.env.NODE_ENV==='production'){
-    app.use('/', express.static('client/build'))
-    app.get('*',(req,res)=>{
-        res.sendFile(path.resolve(__dirname,'client/build/index.html'))
-    })
-}
+
 
 // MiddleWare 
 app.use(express.json())
